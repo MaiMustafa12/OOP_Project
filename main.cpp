@@ -101,7 +101,6 @@ int main(){
     // infrared_filter(image);
     // invert_filter(image);
     // darken_lighten_filter(image);
-
     image.saveImage("hello.png");
     return 0;
 }
