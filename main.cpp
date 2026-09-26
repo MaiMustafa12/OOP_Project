@@ -48,29 +48,6 @@ void add_frame_filter(Image &image){
     }
 }
 
-void blur_filter(Image &image){
-    Image copy = image;
-    for(int i=0 ; i<image.width ; ++i){
-        for(int j=0 ; j<image.height ; ++j){
-            for(int k=0 ; k<image.channels ; ++k){
-                int sum = 0;
-                int count = 0;
-                for (int ni = -1; ni <= 1; ++ni) {
-                    for (int nj = -1; nj <= 1; ++nj) {
-                        int check_i = i + ni;
-                        int check_j = j + nj;
-                        if (check_i >= 0 && check_i < image.width && check_j >= 0 && check_j < image.height) {
-                            sum += copy(check_i, check_j, k);
-                            count++;
-                        }
-                    }
-                }
-                image(i, j, k) = sum / count;
-            }
-        }
-    }
-}
-
 void infrared_filter(Image &image){
     for(int i=0 ; i<image.width ; ++i){
         for(int j=0 ; j<image.height ; ++j){
@@ -81,17 +58,6 @@ void infrared_filter(Image &image){
         }
     }
 }
-
-void invert_filter(Image &image){
-    for(int i=0 ; i<image.width ; ++i){
-        for(int j=0 ; j<image.height ; ++j){
-            for(int k=0 ; k<image.channels ; ++k){
-                image(i,j,k)=255-image(i,j,k);
-            }
-        }
-    }
-}
-
 
 int main(){
     Image image("luffy.jpg");
@@ -104,4 +70,3 @@ int main(){
     image.saveImage("hello.png");
     return 0;
 }
-
