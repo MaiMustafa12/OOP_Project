@@ -332,7 +332,8 @@ string extension;
 int extensionChoice;
 
 cout << "choose new image name : ";
-cin >> newImageName;
+cin.ignore();
+getline(cin, newImageName);
 
 cout << "Choose extension:" << endl;
 cout << "1 => .JPG" << endl;
