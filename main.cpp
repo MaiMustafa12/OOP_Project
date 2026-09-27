@@ -4,7 +4,7 @@
 #include <algorithm>
 using namespace std;
 
-/*
+
 void invert_filter(Image &image){
 
      for(int i=0 ; i<image.width ; ++i){
@@ -15,7 +15,7 @@ void invert_filter(Image &image){
             }
         }
     }
-}*/
+}
 
 void darken_lighten_filter(Image &image){
     string option;
