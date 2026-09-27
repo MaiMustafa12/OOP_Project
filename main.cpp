@@ -282,6 +282,7 @@ int main()
     cout << "5 => Flip" << endl;
     cout << "6 => Rotate" << endl;
     cout << "7 => Add Frame" << endl;
+     cout << "8 => Inverted" << endl;
 
     cin >> choice;
 
