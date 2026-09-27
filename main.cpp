@@ -70,3 +70,101 @@ int main(){
     image.saveImage("hello.png");
     return 0;
 }
+
+/* 
+void BW filter(Image &image){
+
+     for(int i=0 ; i<image.width ; i++){
+        for(int j=0 ; j<image.height ; j++){
+        int avg = 0;
+            for(int k=0 ; k<image.channels ; k++){
+        avg += image (i,j,k);
+}
+        //calc avg - bright or dark
+
+        avg = avg/3;
+
+        // covert bright to white and dark to black 
+
+        for (int k = 0; k < 3; k++) {
+
+            if (avg > 128)
+                {
+                    image(i, j, k) = 255; //bright //white
+                }
+                else
+                {
+                    image(i, j, k) = 0; //dark //black
+                }
+}
+            }
+        }
+    }
+}*/
+void BW_filter(Image &image) {
+   
+    string option;
+    double level ;
+
+    cout << "coloured or B&W " << endl;
+    cin >> option ;
+
+    if (option == "B&W") 
+    {
+            
+    cout << " choose level from 0 to 100% : " << endl;
+    cin >> level ;
+
+    level = level/100 ;
+
+        for(int i=0 ; i<image.width ; i++)
+        {
+        for(int j=0 ; j<image.height ; j++)
+        {
+        int avg = 0;
+
+        // calc avg
+
+            for(int k=0 ; k<image.channels ; k++)
+            {
+
+        avg += image (i,j,k);
+            }
+        //calc avg --> bright or dark
+
+        avg = avg/image.channels;
+
+        // covert bright to white and dark to black 
+        int BW ;
+
+            if (avg > 128)
+                {
+                    BW = 255; //bright //white
+                }
+                else
+                {
+                    BW = 0; //dark //black
+                }
+
+                // apply intensity level choosed of filter to img
+                 for (int k =0; k< image.channels ; k++) 
+                 {
+                    image (i,j,k)= (image (i,j,k) * (1-level)) + (BW*level) ;
+
+                 }
+
+            }
+        }
+    }
+    } 
+
+    int main()
+{
+    Image image("luffy.jpg");
+
+    BW_filter(image);
+
+    image.saveImage("luffy.png");
+
+    return 0;
+}
