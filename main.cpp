@@ -313,6 +313,10 @@ int main()
     {
         add_frame_filter(image);
     }
+         else if (choice == 8)
+    {
+        invert_filter(image);
+    }
     else
     {
         cout << "Invalid choice!" << endl;
