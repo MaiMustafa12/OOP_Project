@@ -61,49 +61,10 @@ void infrared_filter(Image &image){
     }
 }
 
-int main(){
-    Image image("luffy.jpg");
-
-    add_frame_filter(image);
-    // blur_filter(image);
-    // infrared_filter(image);
-    // invert_filter(image);
-    // darken_lighten_filter(image);
-    image.saveImage("hello.png");
-    return 0;
-}
 
 /* 
 Filter 2 --> black and white 
-void BW filter(Image &image){
-
-     for(int i=0 ; i<image.width ; i++){
-        for(int j=0 ; j<image.height ; j++){
-        int avg = 0;
-            for(int k=0 ; k<image.channels ; k++){
-        avg += image (i,j,k);
-}
-        //calc avg - bright or dark
-
-        avg = avg/3;
-
-        // covert bright to white and dark to black 
-
-        for (int k = 0; k < 3; k++) {
-
-            if (avg > 128)
-                {
-                    image(i, j, k) = 255; //bright //white
-                }
-                else
-                {
-                    image(i, j, k) = 0; //dark //black
-                }
-}
-            }
-        }
-    }
-}*/
+*/
 void BW_filter(Image &image) {
    
     string option;
@@ -161,20 +122,11 @@ void BW_filter(Image &image) {
     }
     } 
 
-    int main()
-{
-    Image image("luffy.jpg");
 
-    BW_filter(image);
-
-    image.saveImage("luffy.png");
-
-    return 0;
-}
 /* 
 Filter #6 --> rotate
 */
-void rotate filter(Image &image)
+void rotate_filter(Image &image)
 {
 
 int angle ; 
@@ -191,7 +143,7 @@ for (int i=0 ; i<image.width ; i++)
 {
 for (int j = 0; j< image.height ; j++) 
 {
-for (int k=0 ; k<image.channels ; k++ٍ) {
+for (int k=0 ; k<image.channels ; k++) {
                     rotated(image.height - 1 - j, i, k)
                         = image(i,j,k);
                 }
@@ -271,28 +223,69 @@ void flip_filter(Image& image){
         }
     }
 }
-int main(){
-    string imageName;
-    int choice;
-    cout << "Enter the image name: ";
-    cin >> imageName;
-    Image image(imageName);
-    cout << "Choose filter:" << endl;
-    cout << "1 => Grayscale" << endl;
-    cout << "5 => Flip" << endl;
-    cin >> choice;
-    if (choice == 1){
-        grayscale_filter(image);
-    }else if (choice == 5){
-        flip_filter(image);
-    }else{
-        cout << "Invalid choice!" << endl;
-        return 0;
-    }
-    string newImageName;
-    cout << "Enter the new image name: ";
-    cin >> newImageName;
-    image.saveImage(newImageName);
-    cout << "Image saved successfully!" << endl;
-    return 0;
+int main() 
+{ 
+    string imageName; 
+    int choice; 
+ 
+    cout << "choose image: "; 
+    cin >> imageName; 
+ 
+    Image image(imageName); 
+ 
+    cout << "Choose filter:" << endl; 
+    cout << "1 => Grayscale" << endl; 
+    cout << "2 => Black and White" << endl; 
+    cout << "3 => Darken / Lighten" << endl; 
+    cout << "4 => Infrared" << endl; 
+    cout << "5 => Flip" << endl; 
+    cout << "6 => Rotate" << endl; 
+    cout << "7 => Add Frame" << endl; 
+ 
+    cin >> choice; 
+ 
+    if (choice == 1) 
+    { 
+        grayscale_filter(image); 
+    } 
+    else if (choice == 2) 
+    { 
+        BW_filter(image); 
+    } 
+    else if (choice == 3) 
+    { 
+        darken_lighten_filter(image); 
+    } 
+    else if (choice == 4) 
+    { 
+        infrared_filter(image); 
+    } 
+    else if (choice == 5) 
+    { 
+        flip_filter(image); 
+    } 
+    else if (choice == 6) 
+    { 
+        rotate_filter(image); 
+    } 
+    else if (choice == 7) 
+    { 
+        add_frame_filter(image); 
+    } 
+    else 
+    { 
+        cout << "Invalid choice!" << endl; 
+        return 0; 
+    } 
+ 
+    string newImageName; 
+ 
+    cout << "choose new image name : "; 
+    cin >> newImageName; 
+ 
+    image.saveImage(newImageName); 
+ 
+    cout << "Image saved successfully!" << endl; 
+ 
+    return 0; 
 }
