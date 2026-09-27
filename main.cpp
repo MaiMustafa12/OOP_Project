@@ -277,13 +277,21 @@ int main()
         cout << "Invalid choice!" << endl; 
         return 0; 
     } 
- 
-    string newImageName; 
- 
-    cout << "choose new image name : "; 
-    cin >> newImageName; 
- 
-    image.saveImage(newImageName); 
+     
+ string newImageName;
+string extension;
+
+cout << "choose new image name : ";
+cin >> newImageName;
+
+cout << "choose extension (.JPG, .JPEG, .BMP, .PNG, .TGA): ";
+cin >> extension;
+
+newImageName = newImageName + extension;
+
+image.saveImage(newImageName);
+
+cout << "Image saved successfully!" << endl;
  
     cout << "Image saved successfully!" << endl; 
  
