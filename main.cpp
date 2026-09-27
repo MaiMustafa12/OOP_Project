@@ -1,5 +1,7 @@
 #include<iostream>
 #include"Image_Class.h"
+#include <string>
+#include <algorithm>
 using namespace std;
 /*
 void invert_filter(Image &image){
@@ -167,5 +169,69 @@ void BW_filter(Image &image) {
 
     image.saveImage("luffy.png");
 
+    return 0;
+}
+// ====== Filter 1 =====
+void grayscale_filter(Image& image){
+    for (int i = 0; i < image.width; i++){
+        for (int j = 0; j < image.height; j++){
+            int red = image(i, j, 0);
+            int green = image(i, j, 1);
+            int blue = image(i, j, 2);
+            int avg = (red + green + blue) / 3;
+            image(i, j, 0) = avg;
+            image(i, j, 1) = avg;
+            image(i, j, 2) = avg;
+        }
+    }
+}
+// ======Filter 5 =======
+void flip_filter(Image& image){
+    int choice;
+    cout << "Choose flip type: " << endl;
+    cout << "1 => flip horizontally" << endl;
+    cout << "2 => flip vertically" << endl;
+    cin >> choice;
+    if (choice == 1){
+        for (int i = 0; i < image.width / 2; i++){
+            for (int j = 0; j < image.height; j++){
+                for (int k = 0; k < 3; k++){
+                    swap(image(i, j, k),image(image.width - 1 - i, j, k));
+                }
+            }
+        }
+    }else if (choice == 2){
+        for (int i = 0; i < image.width; i++){
+            for (int j = 0; j < image.height / 2; j++){
+                for (int k = 0; k < 3; k++){
+                    swap(image(i, j, k),image(i, image.height - 1 - j, k));
+                }
+            }
+        }
+    }
+}
+int main(){
+    string imageName;
+    int choice;
+    cout << "Enter the image name: ";
+    cin >> imageName;
+    Image image(imageName);
+    cout << "Choose filter:" << endl;
+    cout << "1 => Grayscale" << endl;
+    cout << "5 => Flip" << endl;
+    cin >> choice;
+    if (choice == 1){
+        grayscale_filter(image);
+    }else if (choice == 5){
+        flip_filter(image);
+    }else{
+        cout << "Invalid choice!" << endl;
+        return 0;
+    }
+    string newImageName;
+    cout << "Enter the new image name: ";
+    cin >> newImageName;
+    image.saveImage(newImageName);
+    cout << "Image saved successfully!" << endl;
     return 0;
 }
