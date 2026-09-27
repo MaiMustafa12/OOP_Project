@@ -72,6 +72,7 @@ int main(){
 }
 
 /* 
+Filter 2 --> black and white 
 void BW filter(Image &image){
 
      for(int i=0 ; i<image.width ; i++){
