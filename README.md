@@ -1,3 +1,12 @@
+![C++](https://shields.io)
+![Markdown](https://shields.io)
+![Status](https://shields.io)
+![Views](https://seeyoufarm.com)
+
+---
+
+
+
 # 📸 OOP Image Processor Project
 
 A comprehensive **C++ Image Processing Application** built as part of the Object-Oriented Programming (OOP) course requirements. The project features a well-structured, modular design that splits implementation into separate Header and Source files for clean and maintainable code.
