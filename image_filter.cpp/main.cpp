@@ -1,3 +1,31 @@
+
+// ====================================================================
+// 📸 OOP Project - Image Processor (Milestone 1)
+// 📌 Section: S15 & S16
+// ====================================================================
+// Team Members & Filter Contributions:
+// --------------------------------------------------------------------
+// 1. Mai Mustafa
+//    - ID: 20251443
+//    - Assigned Filters: 4 (Infrared), 8 (Inverted)
+//
+// 2. Fatma 
+//    - ID: 20250462
+//    - Assigned Filters: 1 (Grayscale), 5 (Flip)
+//
+// 3. Malak 
+//    - ID: 20251414
+//    - Assigned Filters: 2 (Black and White), 6 (Rotate)
+//
+// 4. Mai Hussain 
+//    - ID: 20251442
+//    - Assigned Filters: 3 (Darken / Lighten), 7 (Add Frame)
+// ====================================================================
+
+
+
+
+
 #include <iostream>
 #include "../include/Image_Class.h"
 #include <string>
