@@ -1,26 +1,28 @@
+#define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+
 #include <iostream>
 #include "../include/Image_Class.h"
+#include "../include/Filters.h" 
 #include <string>
 #include <algorithm>
 using namespace std;
 
-void invert_filter(Image &image)
+void invert_filter(Image& image)
 {
-
     for (int i = 0; i < image.width; ++i)
     {
         for (int j = 0; j < image.height; ++j)
         {
             for (int k = 0; k < image.channels; ++k)
             {
-
                 image(i, j, k) = 255 - image(i, j, k);
             }
         }
     }
 }
 
-void darken_lighten_filter(Image &image)
+void darken_lighten_filter(Image& image)
 {
     string option;
     double level;
@@ -66,7 +68,7 @@ void darken_lighten_filter(Image &image)
     }
 }
 
-void add_frame_filter(Image &image)
+void add_frame_filter(Image& image)
 {
     int r = 255, g = 255, b = 0, size = 15;
 
@@ -87,7 +89,7 @@ void add_frame_filter(Image &image)
     }
 }
 
-void infrared_filter(Image &image)
+void infrared_filter(Image& image)
 {
     for (int i = 0; i < image.width; ++i)
     {
@@ -103,12 +105,8 @@ void infrared_filter(Image &image)
     }
 }
 
-/*
-Filter 2 --> black and white
-*/
-void BW_filter(Image &image)
+void BW_filter(Image& image)
 {
-
     string option;
     double level;
 
@@ -128,28 +126,24 @@ void BW_filter(Image &image)
             {
                 int avg = 0;
 
-                // calc avg
                 for (int k = 0; k < image.channels; k++)
                 {
                     avg += image(i, j, k);
                 }
 
-                // calc avg --> bright or dark
                 avg = avg / image.channels;
 
-                // convert bright to white and dark to black
                 int BW;
 
                 if (avg > 128)
                 {
-                    BW = 255; // bright // white
+                    BW = 255;
                 }
                 else
                 {
-                    BW = 0; // dark // black
+                    BW = 0;
                 }
 
-                // apply intensity level chosen of filter to image
                 for (int k = 0; k < image.channels; k++)
                 {
                     image(i, j, k) =
@@ -160,10 +154,7 @@ void BW_filter(Image &image)
     }
 }
 
-/*
-Filter #6 --> rotate
-*/
-void rotate_filter(Image &image)
+void rotate_filter(Image& image)
 {
     int angle;
 
@@ -185,7 +176,6 @@ void rotate_filter(Image &image)
             }
         }
     }
-
     else if (angle == 180)
     {
         for (int i = 0; i < image.width; i++)
@@ -195,12 +185,11 @@ void rotate_filter(Image &image)
                 for (int k = 0; k < image.channels; k++)
                 {
                     rotated(image.height - 1 - j,
-                            image.width - 1 - i, k) = image(i, j, k);
+                        image.width - 1 - i, k) = image(i, j, k);
                 }
             }
         }
     }
-
     else if (angle == 270)
     {
         for (int i = 0; i < image.width; i++)
@@ -218,10 +207,8 @@ void rotate_filter(Image &image)
     image = rotated;
 }
 
-// ====== Filter 1 =====
-void grayscale_filter(Image &image)
+void grayscale_filter(Image& image)
 {
-
     for (int i = 0; i < image.width; i++)
     {
         for (int j = 0; j < image.height; j++)
@@ -240,10 +227,8 @@ void grayscale_filter(Image &image)
     }
 }
 
-// ====== Filter 5 =======
-void flip_filter(Image &image)
+void flip_filter(Image& image)
 {
-
     int choice;
 
     cout << "Choose flip type: " << endl;
@@ -254,33 +239,28 @@ void flip_filter(Image &image)
 
     if (choice == 1)
     {
-
         for (int i = 0; i < image.width / 2; i++)
         {
             for (int j = 0; j < image.height; j++)
             {
                 for (int k = 0; k < 3; k++)
                 {
-
                     swap(image(i, j, k),
-                         image(image.width - 1 - i, j, k));
+                        image(image.width - 1 - i, j, k));
                 }
             }
         }
     }
-
     else if (choice == 2)
     {
-
         for (int i = 0; i < image.width; i++)
         {
             for (int j = 0; j < image.height / 2; j++)
             {
                 for (int k = 0; k < 3; k++)
                 {
-
                     swap(image(i, j, k),
-                         image(i, image.height - 1 - j, k));
+                        image(i, image.height - 1 - j, k));
                 }
             }
         }
@@ -295,7 +275,8 @@ int main()
     cout << "choose image: ";
     cin >> imageName;
 
-    Image image(imageName);
+    string imagePath = "images/" + imageName;
+    Image image(imagePath);
 
     cout << "Choose filter:" << endl;
     cout << "1 => Grayscale" << endl;
@@ -348,7 +329,6 @@ int main()
     }
 
     // Save the new image
-
     string newImageName;
     string extension;
     int extensionChoice;
@@ -392,7 +372,7 @@ int main()
         return 0;
     }
 
-    newImageName = newImageName + extension;
+    newImageName = "images/" + newImageName + extension;
 
     image.saveImage(newImageName);
 
