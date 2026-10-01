@@ -27,7 +27,7 @@
 
 
 #include <iostream>
-#include "../include/Image_Class.h"
+#include "Image_Class.h"
 #include <string>
 #include <algorithm>
 #include <fstream>
@@ -97,7 +97,6 @@ void darken_lighten_filter(Image &image)
 
 void add_frame_filter(Image &image)
 {
-   
     int size;
     int color;
     cout << "Enter frame size:"<<endl;
@@ -131,7 +130,7 @@ void add_frame_filter(Image &image)
     }
     else {
         cout << "invalid color choice!"<<endl;
-        return;
+        return;}
 
     for (int i = 0; i < image.width; ++i)
     {
