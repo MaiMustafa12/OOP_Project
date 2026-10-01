@@ -30,6 +30,7 @@
 #include "../include/Image_Class.h"
 #include <string>
 #include <algorithm>
+#include <fstream>
 using namespace std;
 
 void invert_filter(Image &image)
@@ -351,14 +352,23 @@ void flip_filter(Image &image)
 
 int main()
 {
-    string imageName;
-    int choice;
+string imageName;
+int choice;
 
-    cout << "choose image: ";
+cout << "choose image: ";
+while (true) {
     cin >> imageName;
-
-    Image image(imageName);
-
+    ifstream file(imageName);
+    if (file) {
+        file.close();
+        break;
+    }
+    else {
+        cout << "file Doesn’t  exist!" << endl;
+        cout << "pls try again" << endl;
+    }
+}
+Image image(imageName);
     cout << "Choose filter:" << endl;
     cout << "1 => Grayscale" << endl;
     cout << "2 => Black and White" << endl;
