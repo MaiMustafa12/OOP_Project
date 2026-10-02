@@ -1,7 +1,7 @@
 
 // ====================================================================
-// 📸 OOP Project - Image Processor (Milestone 1)
-// 📌 Section: S15 & S16
+//  OOP Project - Image Processor (Milestone 1)
+//  Section: S15 & S16
 // ====================================================================
 // Team Members & Filter Contributions:
 // --------------------------------------------------------------------
@@ -19,7 +19,7 @@
 //
 // 4. Mai Hussain 
 //    - ID: 20251442
-//    - Assigned Filters: 3 (Darken / Lighten), 7 (Add Frame)
+//    - Assigned Filters: 3 (Invert ), 7 (Darken/ Lighten)
 // ====================================================================
 
 
